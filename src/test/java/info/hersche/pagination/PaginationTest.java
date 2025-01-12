@@ -24,7 +24,6 @@ public class PaginationTest
 	private static final Logger LOGGER = LoggerFactory.getLogger(PaginationTest.class);
 	private static final int NUMBER = 497;
 
-
 	/**
 	 * Create data provider
 	 * 
@@ -101,8 +100,7 @@ public class PaginationTest
 				.setMaxPagingComponents(defaultComponents) //
 				.build();
 
-		PaginatedTableDecorator<Employee> decorator = PaginatedTableDecorator.decorate(table, provider, pageSizes,
-				defaultSize);
+		PaginatedTableDecorator<Employee> decorator = PaginatedTableDecorator.decorate(table, provider, pageSizes, defaultSize);
 		// PaginatedTableDecorator<Employee> decorator = PaginatedTableDecorator.decorate(table, provider, paginator);
 
 		JFrame frame = createFrame();

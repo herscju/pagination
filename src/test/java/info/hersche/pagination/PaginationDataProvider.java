@@ -12,13 +12,14 @@ import java.util.List;
 public interface PaginationDataProvider<T>
 {
 	/**
-     * @param startIndex
-     * @param endIndex
-     * @return
-     */
-    List<T> getRows(int startIndex, int endIndex);
-	
-    /**
+	 * @param startIndex
+	 * @param endIndex
+	 * @return
+	 */
+	List<T> getRows(int startIndex, int endIndex);
+
+
+	/**
 	 * @return
 	 */
 	int getTotalRowCount();

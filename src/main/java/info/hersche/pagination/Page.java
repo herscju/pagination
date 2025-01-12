@@ -25,7 +25,6 @@ public class Page implements Serializable
 	private Control control;
 	private int currentPage;
 
-
 	/**
 	 * Constructor
 	 * 
@@ -110,7 +109,8 @@ public class Page implements Serializable
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

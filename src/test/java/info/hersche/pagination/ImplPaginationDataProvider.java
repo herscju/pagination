@@ -14,7 +14,6 @@ public class ImplPaginationDataProvider<T> implements PaginationDataProvider<Emp
 {
 	List<Employee> list = new ArrayList<>();
 
-
 	/**
 	 * Constructor
 	 * 
@@ -26,7 +25,8 @@ public class ImplPaginationDataProvider<T> implements PaginationDataProvider<Emp
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see info.hersche.pagination.PaginationDataProvider#getRows(int, int)
 	 */
 	@Override
@@ -36,7 +36,8 @@ public class ImplPaginationDataProvider<T> implements PaginationDataProvider<Emp
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see info.hersche.pagination.PaginationDataProvider#getTotalRowCount()
 	 */
 	@Override

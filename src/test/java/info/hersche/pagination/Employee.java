@@ -24,7 +24,6 @@ public class Employee implements Serializable
 	private String phoneNumber;
 	private String address;
 
-
 	/**
 	 * Default constructor
 	 */

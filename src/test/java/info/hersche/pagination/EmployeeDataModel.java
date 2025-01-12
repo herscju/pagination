@@ -14,7 +14,6 @@ public class EmployeeDataModel<T> extends ObjectTableModel<Employee>
 	 */
 	private static final long serialVersionUID = -4410376566783567402L;
 
-
 	/**
 	 * Default constructor
 	 */
@@ -24,7 +23,8 @@ public class EmployeeDataModel<T> extends ObjectTableModel<Employee>
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see javax.swing.table.TableModel#getColumnCount()
 	 */
 	@Override
@@ -34,7 +34,8 @@ public class EmployeeDataModel<T> extends ObjectTableModel<Employee>
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see info.hersche.pagination.ObjectTableModel#getColumnName(int)
 	 */
 	@Override
@@ -56,7 +57,8 @@ public class EmployeeDataModel<T> extends ObjectTableModel<Employee>
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see info.hersche.pagination.ObjectTableModel#getValueAt(java.lang.Object, int)
 	 */
 	@Override

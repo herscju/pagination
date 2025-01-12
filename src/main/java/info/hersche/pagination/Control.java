@@ -24,7 +24,6 @@ public class Control implements Serializable
 	private int defaultSize;
 	private int defaultPage;
 
-
 	/**
 	 * Constructor
 	 * 
@@ -81,7 +80,8 @@ public class Control implements Serializable
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -100,7 +100,8 @@ public class Control implements Serializable
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -115,7 +116,7 @@ public class Control implements Serializable
 		{
 			return false;
 		}
-		
+
 		return false;
 	}
 }

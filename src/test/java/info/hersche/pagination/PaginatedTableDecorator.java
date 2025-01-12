@@ -41,15 +41,13 @@ public class PaginatedTableDecorator<T>
 	private static final Logger LOGGER = LoggerFactory.getLogger(PaginatedTableDecorator.class);
 	private static final int MAX_PAGING_COMPONENTS = 9;
 
-
 	/**
 	 * @param table
 	 * @param provider
 	 * @param paginator
 	 * @return
 	 */
-	public static <T> PaginatedTableDecorator<T> decorate(JTable table, PaginationDataProvider<T> provider,
-			Paginator paginator)
+	public static <T> PaginatedTableDecorator<T> decorate(JTable table, PaginationDataProvider<T> provider, Paginator paginator)
 	{
 		PaginatedTableDecorator<T> decorator = new PaginatedTableDecorator<>(table, provider, paginator);
 		decorator.init();
@@ -65,8 +63,7 @@ public class PaginatedTableDecorator<T>
 	 * @param defaultSize
 	 * @return PaginatedTableDecorator
 	 */
-	public static <T> PaginatedTableDecorator<T> decorate(JTable table, PaginationDataProvider<T> provider,
-			int[] pageSizes, int defaultSize)
+	public static <T> PaginatedTableDecorator<T> decorate(JTable table, PaginationDataProvider<T> provider, int[] pageSizes, int defaultSize)
 	{
 		PaginatedTableDecorator<T> decorator = new PaginatedTableDecorator<>(table, provider, pageSizes, defaultSize);
 		decorator.init();
@@ -86,7 +83,6 @@ public class PaginatedTableDecorator<T>
 
 	private ObjectTableModel<T> objectTableModel;
 
-
 	private PaginatedTableDecorator(JTable table, PaginationDataProvider<T> dataProvider, Paginator paginator)
 	{
 		this.table = table;
@@ -103,8 +99,7 @@ public class PaginatedTableDecorator<T>
 	 * @param pageSizes
 	 * @param defaultPageSize
 	 */
-	private PaginatedTableDecorator(JTable table, PaginationDataProvider<T> dataProvider, int[] pageSizes,
-			int defaultPageSize)
+	private PaginatedTableDecorator(JTable table, PaginationDataProvider<T> dataProvider, int[] pageSizes, int defaultPageSize)
 	{
 		this.table = table;
 		this.dataProvider = dataProvider;

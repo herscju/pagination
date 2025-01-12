@@ -19,7 +19,6 @@ public class PaginatorBuilder
 		private int nextPage;
 		private String label;
 
-
 		/**
 		 * Constructor
 		 * 
@@ -64,7 +63,6 @@ public class PaginatorBuilder
 	public static final int MAX_PAGING_COMPONENTS = 9;
 	public static final Control DEFAULT_CONTROL = new Control(PAGE_SIZES, DEFAULT_SIZE, DEFAULT_PAGE);
 
-
 	/**
 	 * Get a paginator builder instance
 	 * 
@@ -83,7 +81,7 @@ public class PaginatorBuilder
 	private Control control = DEFAULT_CONTROL;
 
 	/**
-	 * Maximum number of paging components to show. The number does not inlcude the single step buttons.
+	 * Maximum number of paging components to show. The number does not include the single step buttons.
 	 */
 	private int maxPagingComponents = MAX_PAGING_COMPONENTS;
 
@@ -91,7 +89,6 @@ public class PaginatorBuilder
 	 * (Total) Number of hits in list to display.
 	 */
 	private int number;
-
 
 	/**
 	 * Private default constructor

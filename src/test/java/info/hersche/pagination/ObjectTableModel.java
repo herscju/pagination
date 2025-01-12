@@ -24,7 +24,6 @@ public abstract class ObjectTableModel<T> extends AbstractTableModel
 	 */
 	private List<T> objectRows = new ArrayList<>();
 
-
 	/**
 	 * Default constructor of abstract class
 	 */
@@ -34,7 +33,8 @@ public abstract class ObjectTableModel<T> extends AbstractTableModel
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
 	 */
 	@Override
@@ -51,7 +51,8 @@ public abstract class ObjectTableModel<T> extends AbstractTableModel
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 	 */
 	@Override
@@ -67,7 +68,8 @@ public abstract class ObjectTableModel<T> extends AbstractTableModel
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see javax.swing.table.TableModel#getRowCount()
 	 */
 	@Override
@@ -77,7 +79,8 @@ public abstract class ObjectTableModel<T> extends AbstractTableModel
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see javax.swing.table.TableModel#getValueAt(int, int)
 	 */
 	@Override

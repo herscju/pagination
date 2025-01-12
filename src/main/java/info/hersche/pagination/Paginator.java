@@ -16,7 +16,7 @@ public class Paginator implements Serializable
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -8693097673863502204L;
 
 	/**
 	 * Values to control behavior of paginator.
@@ -27,7 +27,6 @@ public class Paginator implements Serializable
 	 * (Total) Number of hits in list to display.
 	 */
 	private int number;
-
 
 	/**
 	 * Constructor
@@ -67,7 +66,7 @@ public class Paginator implements Serializable
 				.setControl(this.control) //
 				.setCurrentPage(currentPage) //
 				.build();
-		
+
 		return page;
 	}
 
