@@ -45,6 +45,12 @@ public class Component implements Serializable
 	 */
 	@Builder.Default
 	private String label = "";
+	
+	/**
+	 * Value of step (forwards or backwards)
+	 */
+	@Builder.Default
+	private int value = Paginator.Values.SEPARATOR.getValue();
 
 	/**
 	 * TRUE, if current page / component is selected

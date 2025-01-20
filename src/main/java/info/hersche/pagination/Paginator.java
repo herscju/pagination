@@ -55,18 +55,18 @@ public class Paginator<T> implements Serializable
 		/**
 		 * Member
 		 */
-		private int nextPage;
+		private int value;
 		private String label;
 
 		/**
 		 * Constructor
 		 * 
-		 * @param nextPage
+		 * @param value
 		 * @param label
 		 */
-		private Values(int nextPage, String label)
+		private Values(int value, String label)
 		{
-			this.nextPage = nextPage;
+			this.value = value;
 			this.label = label;
 		}
 
@@ -83,9 +83,9 @@ public class Paginator<T> implements Serializable
 		/**
 		 * @return the next page
 		 */
-		public int getNextPage()
+		public int getValue()
 		{
-			return this.nextPage;
+			return this.value;
 		}
 	};
 
@@ -116,11 +116,11 @@ public class Paginator<T> implements Serializable
 	 */
 	public static int getNextOrPreviousPage(int currentPage, Values value, int pages)
 	{
-		int page = currentPage + value.getNextPage();
+		int page = currentPage + value.getValue();
 
-		if (page < Values.NEXT.getNextPage())
+		if (page < Values.NEXT.getValue())
 		{
-			return Values.NEXT.getNextPage();
+			return Values.NEXT.getValue();
 		}
 
 		if (page > pages)
@@ -128,7 +128,7 @@ public class Paginator<T> implements Serializable
 			return pages;
 		}
 
-		return currentPage + value.getNextPage();
+		return currentPage + value.getValue();
 	}
 
 	/**
@@ -173,6 +173,7 @@ public class Paginator<T> implements Serializable
 	{
 		Component component = Component.toBuilder() //
 				.label(String.valueOf(pageNumber)) //
+				.value(0) //
 				.selected(Boolean.valueOf((pageNumber == this.currentPage))) //
 				.separator(Boolean.FALSE) //
 				.build();
@@ -183,12 +184,14 @@ public class Paginator<T> implements Serializable
 
 	/**
 	 * @param label
+	 * @param value 
 	 * @return
 	 */
-	private Component addNavigationComponent(Values label)
+	private Component addNavigationComponent(Values label, int value)
 	{
 		Component component = Component.toBuilder() //
 				.label(String.valueOf(label.getLabel())) //
+				.value(value)
 				.selected(Boolean.FALSE) //
 				.separator(Boolean.FALSE) //
 				.build();
@@ -265,7 +268,8 @@ public class Paginator<T> implements Serializable
 
 		List<Component> components = new LinkedList<>();
 
-		components.add(this.addNavigationComponent(Values.PREVIOUS));
+		int previous = Paginator.getNextOrPreviousPage(this.currentPage, Values.PREVIOUS, this.numberOfPages);
+		components.add(this.addNavigationComponent(Values.PREVIOUS, previous));
 		if (this.numberOfPages > maxComponents)
 		{
 			components.add(this.addNavigationComponent(1));
@@ -308,7 +312,8 @@ public class Paginator<T> implements Serializable
 		{
 			components.addAll(this.addNavigationComponents(1, this.numberOfPages));
 		}
-		components.add(this.addNavigationComponent(Values.NEXT));
+		int next = Paginator.getNextOrPreviousPage(this.currentPage, Values.NEXT, this.numberOfPages);
+		components.add(this.addNavigationComponent(Values.NEXT, next));
 
 		// Create page object
 		Page page = PageBuilder.toBuilder()//
