@@ -18,51 +18,51 @@ package info.hersche.pagination;
 
 import java.io.Serializable;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author adm-jhersche
- *
+ * 
  */
-@Setter
 @Getter
 @ToString
 @EqualsAndHashCode
-public class Control implements Serializable
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(toBuilder = true, builderMethodName = "toBuilder")
+public class Component implements Serializable
 {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3213432628027693222L;
+	private static final long serialVersionUID = 8681649795632926762L;
 
 	/**
-	 * Member
+	 * Content to display
 	 */
-	private int[] sizes;
-	private int size;
-	private int start;
-	/**
-	 * The max. number of components to show
-	 */
-	private int maxComponents;
+	@Builder.Default
+	private String label = "";
 
 	/**
-	 * Constructor
-	 * 
-	 * @param sizes
-	 * @param size
-	 * @param start
-	 * @param maxPagingComponents 
+	 * TRUE, if current page / component is selected
 	 */
-	public Control(int[] sizes, int size, int start, int maxComponents)
+	@Builder.Default
+	private Boolean selected = Boolean.FALSE;
+
+	/**
+	 * TRUE, if current component is separator only
+	 */
+	@Builder.Default
+	private Boolean separator = Boolean.FALSE;
+
+	/**
+	 * Private default constructor
+	 */
+	private Component()
 	{
-		this.sizes = sizes;
-		this.size = size;
-		this.start = start;
-		this.maxComponents = maxComponents;
+		// Nothing to do here
 	}
-
 }

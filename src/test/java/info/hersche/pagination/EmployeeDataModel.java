@@ -1,4 +1,17 @@
 /**
+ * Copyright (c) 2025 Jürg Hersche (Green@rt)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * 
  */
 package info.hersche.pagination;
@@ -13,6 +26,7 @@ public class EmployeeDataModel<T> extends ObjectTableModel<Employee>
 	 * 
 	 */
 	private static final long serialVersionUID = -4410376566783567402L;
+	private static final int COLS = 4;
 
 	/**
 	 * Default constructor
@@ -23,20 +37,18 @@ public class EmployeeDataModel<T> extends ObjectTableModel<Employee>
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getColumnCount()
+	/**
+	 * 
 	 */
 	@Override
 	public int getColumnCount()
 	{
-		return 4;
+		return COLS;
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * @see info.hersche.pagination.ObjectTableModel#getColumnName(int)
+	/**
+	 *
 	 */
 	@Override
 	public String getColumnName(int column)
@@ -57,9 +69,8 @@ public class EmployeeDataModel<T> extends ObjectTableModel<Employee>
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * @see info.hersche.pagination.ObjectTableModel#getValueAt(java.lang.Object, int)
+	/**
+	 *
 	 */
 	@Override
 	public Object getValueAt(Employee employee, int columnIndex)

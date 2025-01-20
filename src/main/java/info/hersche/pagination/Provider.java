@@ -16,42 +16,24 @@
  */
 package info.hersche.pagination;
 
-import java.io.Serializable;
-
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.List;
 
 /**
- * @author adm-jhersche
- *
+ * @author herscju
  */
-@Setter
-@Getter
-@ToString
-@EqualsAndHashCode
-public class Employee implements Serializable
+public interface Provider<T>
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2326829805357398956L;
 
 	/**
-	 * Member
+	 * @param startIndex
+	 * @param endIndex
+	 * @return
 	 */
-	private long id;
-	private String name;
-	private String phoneNumber;
-	private String address;
+	public List<T> getRows(long startIndex, long endIndex);
 
 	/**
-	 * Default constructor
+	 * @return
 	 */
-	public Employee()
-	{
-		// Nothing to do here
-	}
+	public long getSize();
 
 }

@@ -16,53 +16,55 @@
  */
 package info.hersche.pagination;
 
-import java.io.Serializable;
-
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author adm-jhersche
  *
  */
-@Setter
-@Getter
-@ToString
-@EqualsAndHashCode
-public class Control implements Serializable
+public class PaginationProviderImpl<T> implements PaginationProvider<T>
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3213432628027693222L;
-
-	/**
-	 * Member
-	 */
-	private int[] sizes;
-	private int size;
-	private int start;
-	/**
-	 * The max. number of components to show
-	 */
-	private int maxComponents;
+	List<T> list = new ArrayList<>();
 
 	/**
 	 * Constructor
 	 * 
-	 * @param sizes
-	 * @param size
-	 * @param start
-	 * @param maxPagingComponents 
+	 * @param list
 	 */
-	public Control(int[] sizes, int size, int start, int maxComponents)
+	public PaginationProviderImpl(List<T> list)
 	{
-		this.sizes = sizes;
-		this.size = size;
-		this.start = start;
-		this.maxComponents = maxComponents;
+		this.list = list;
+	}
+
+
+	/**
+	 *
+	 */
+	@Override
+	public List<T> getAll()
+	{
+		return this.list;
+	}
+
+
+	/**
+	 *
+	 */
+	@Override
+	public List<T> getRows(int startIndex, int endIndex)
+	{
+		return this.list.subList(startIndex, endIndex);
+	}
+
+
+	/**
+	 *
+	 */
+	@Override
+	public int getTotalRowCount()
+	{
+		return this.list.size();
 	}
 
 }

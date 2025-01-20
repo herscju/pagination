@@ -16,53 +16,50 @@
  */
 package info.hersche.pagination;
 
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author adm-jhersche
- *
+ * @author herscju
  */
-@Setter
-@Getter
 @ToString
 @EqualsAndHashCode
-public class Control implements Serializable
+public class DataProvider<T> implements Provider<T>
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3213432628027693222L;
-
-	/**
-	 * Member
-	 */
-	private int[] sizes;
-	private int size;
-	private int start;
-	/**
-	 * The max. number of components to show
-	 */
-	private int maxComponents;
+	private Collection<T> collection;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param sizes
-	 * @param size
-	 * @param start
-	 * @param maxPagingComponents 
+	 * @param collection
 	 */
-	public Control(int[] sizes, int size, int start, int maxComponents)
+	public DataProvider(Collection<T> collection)
 	{
-		this.sizes = sizes;
-		this.size = size;
-		this.start = start;
-		this.maxComponents = maxComponents;
+		this.collection = collection;
+	}
+
+
+	/**
+	 * @return the size of data set/collection/...
+	 */
+	@Override
+	public long getSize()
+	{
+		return this.collection.size();
+	}
+
+
+	/**
+	 *
+	 */
+	@Override
+	public List<T> getRows(long startIndex, long endIndex)
+	{
+		return this.collection.stream().skip(startIndex).limit(endIndex - startIndex).collect(Collectors.toList());
 	}
 
 }

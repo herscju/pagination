@@ -1,17 +1,37 @@
 /**
+ * Copyright (c) 2025 Jürg Hersche (Green@rt)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * 
  */
 package info.hersche.pagination;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.List;
 import java.util.stream.Stream;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * @author herscju
  *
  */
+@Getter
+@ToString
+@EqualsAndHashCode
 public class Page implements Serializable
 {
 	/**
@@ -24,6 +44,8 @@ public class Page implements Serializable
 	 */
 	private Control control;
 	private int currentPage;
+	private int numberOfPages;
+	private List<Component> components;
 
 	/**
 	 * Constructor
@@ -34,28 +56,8 @@ public class Page implements Serializable
 	{
 		this.control = builder.getControl();
 		this.currentPage = builder.getCurrentPage();
-	}
-
-
-	/**
-	 * Get the page controls
-	 * 
-	 * @return the control
-	 */
-	public Control getControl()
-	{
-		return this.control;
-	}
-
-
-	/**
-	 * Get the current page number
-	 * 
-	 * @return the page
-	 */
-	public int getCurrentPage()
-	{
-		return this.currentPage;
+		this.numberOfPages = builder.getNumberOfPages();
+		this.components = builder.getComponents();
 	}
 
 
@@ -66,7 +68,7 @@ public class Page implements Serializable
 	 */
 	public Stream<Integer> getPageSizesAsStream()
 	{
-		return Arrays.stream(this.control.getPageSizes()).boxed();
+		return Arrays.stream(this.control.getSizes()).boxed();
 	}
 
 
@@ -77,7 +79,15 @@ public class Page implements Serializable
 	 */
 	public int getStartRow()
 	{
-		return ((this.getCurrentPage() - 1) * this.control.getDefaultSize()) + 1;
+		return ((this.getCurrentPage() - 1) * this.control.getSize()) + 1;
+	}
+
+
+	public Page setComponents(List<Component> components)
+	{
+		this.components = components;
+
+		return this;
 	}
 
 
@@ -98,33 +108,14 @@ public class Page implements Serializable
 	/**
 	 * Set the current default page size
 	 * 
-	 * @param defaultSize current default page size
+	 * @param size current default page size
 	 * @return the page object
 	 */
-	public Page setDefaultSize(int defaultSize)
+	public Page setDefaultSize(int size)
 	{
-		this.control.setDefaultSize(defaultSize);
+		this.control.setSize(size);
 
 		return this;
 	}
 
-
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString()
-	{
-		StringBuilder sb = new StringBuilder(Page.class.getSimpleName());
-		sb.append(": Ctrl=[");
-		sb.append(this.control);
-		sb.append("] Current page=[");
-		sb.append(this.currentPage);
-		sb.append("] Page sizes=[");
-		sb.append(this.getPageSizesAsStream().collect(Collectors.toList()));
-		sb.append("]");
-
-		return sb.toString();
-	}
 }
