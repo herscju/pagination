@@ -21,6 +21,7 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -65,9 +66,9 @@ public class PaginatedTableDecorator<T>
 	 * @param defaultSize
 	 * @return PaginatedTableDecorator
 	 */
-	public static <T> PaginatedTableDecorator<T> decorate(JTable table, Provider<T> provider, int[] pageSizes, int defaultSize, int defaultComponents)
+	public static <T> PaginatedTableDecorator<T> decorate(JTable table, Provider<T> provider, Integer[] pageSizes, int defaultSize, int defaultComponents)
 	{
-		PaginatedTableDecorator<T> decorator = new PaginatedTableDecorator<>(table, provider, pageSizes, defaultSize, defaultComponents);
+		PaginatedTableDecorator<T> decorator = new PaginatedTableDecorator<>(table, provider, Arrays.asList(pageSizes), defaultSize, defaultComponents);
 		decorator.init();
 
 		return decorator;
@@ -107,7 +108,7 @@ public class PaginatedTableDecorator<T>
 	 * @param pageSizes
 	 * @param defaultSize
 	 */
-	private PaginatedTableDecorator(JTable table, Provider<T> dataProvider, int[] pageSizes, int defaultSize, int defaultComponents)
+	private PaginatedTableDecorator(JTable table, Provider<T> dataProvider, List<Integer> pageSizes, int defaultSize, int defaultComponents)
 	{
 		this.table = table;
 		this.dataProvider = dataProvider;

@@ -18,6 +18,7 @@
 package info.hersche.pagination;
 
 import java.awt.Dimension;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -104,14 +105,14 @@ public class EmployeePaginationJFrameDemo
 
 		LOGGER.info("=== Main =====================================================================");
 
-		int[] pageSizes = new int[] { 8, 15, 29, 57, 113 };
-		int defaultSize = 8;
+		Integer[] pageSizes = new Integer[] { 8, 15, 29, 57, 113 };
+		int defaultSize = 12;
 		int startPage = 1;
 		int defaultComponents = PaginatedTableDecorator.MAX_PAGING_COMPONENTS;
 
 		PaginationProvider<Employee> employees = EmployeePaginationJFrameDemo.createDataProvider(NUMBER_521);
 		Provider<Employee> provider = new DataProvider<>(employees.getAll());
-		Control control = new Control(pageSizes, defaultSize, startPage, defaultComponents);
+		Control control = new Control(Arrays.asList(pageSizes), defaultSize, startPage, defaultComponents);
 		Paginator<Employee> paginator = Paginator.<Employee> toBuilder() //
 				.provider(provider) //
 				.control(control) //

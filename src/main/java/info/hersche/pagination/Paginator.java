@@ -96,7 +96,7 @@ public class Paginator<T> implements Serializable
 	private static final Logger LOGGER = LoggerFactory.getLogger(Paginator.class);
 	private static final int DEFAULT_PAGE = 1;
 	private static final int DEFAULT_SIZE = 9;
-	private static final int[] PAGE_SIZES = new int[] { 5, 10, 20, 50, 75, 100 };
+	private static final Integer[] PAGE_SIZES = new Integer[] { 5, 10, 20, 50, 75, 100 };
 
 	/**
 	 * 

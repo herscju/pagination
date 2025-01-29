@@ -17,6 +17,9 @@
 package info.hersche.pagination;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.TreeSet;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -41,13 +44,31 @@ public class Control implements Serializable
 	/**
 	 * Member
 	 */
-	private int[] sizes;
+	private TreeSet<Integer> sizes;
 	private int size;
 	private int start;
+
 	/**
 	 * The max. number of components to show
 	 */
 	private int maxComponents;
+
+	/**
+	 * @param sizes
+	 * @param size
+	 * @param start
+	 * @param maxComponents
+	 */
+	public Control(Integer[] sizes, int size, int start, int maxComponents)
+	{
+		this.sizes = new TreeSet<>(Arrays.asList(sizes));
+		this.size = size;
+		this.start = start;
+		this.maxComponents = maxComponents;
+		
+		this.init();
+	}
+
 
 	/**
 	 * Constructor
@@ -55,14 +76,26 @@ public class Control implements Serializable
 	 * @param sizes
 	 * @param size
 	 * @param start
-	 * @param maxPagingComponents 
+	 * @param maxComponents
 	 */
-	public Control(int[] sizes, int size, int start, int maxComponents)
+	public Control(List<Integer> sizes, int size, int start, int maxComponents)
 	{
-		this.sizes = sizes;
+		this.sizes = new TreeSet<>(sizes);
 		this.size = size;
 		this.start = start;
 		this.maxComponents = maxComponents;
+		
+		this.init();
+	}
+
+
+	/**
+	 * 
+	 */
+	private void init()
+	{
+		// Add size value to sizes list
+		this.sizes.add(this.size);
 	}
 
 }

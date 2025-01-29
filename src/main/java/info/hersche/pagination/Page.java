@@ -68,7 +68,7 @@ public class Page implements Serializable
 	 */
 	public Stream<Integer> getPageSizesAsStream()
 	{
-		return Arrays.stream(this.control.getSizes()).boxed();
+		return this.control.getSizes().stream();
 	}
 
 

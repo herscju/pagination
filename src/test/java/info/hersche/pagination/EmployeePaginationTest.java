@@ -19,6 +19,7 @@ package info.hersche.pagination;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
@@ -41,6 +42,7 @@ public class EmployeePaginationTest
 {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeePaginationTest.class);
+	private static final Integer[] PAGES_SIZES = new Integer[] { 8, 15, 29, 57, 113 };
 	private static final int NUMBER_001 = 1;
 	private static final int NUMBER_073 = 73;
 	private static final int NUMBER_521 = 521;
@@ -51,8 +53,6 @@ public class EmployeePaginationTest
 	/**
 	 * Generic settings
 	 */
-	private static final int[] PAGES_SIZES = new int[] { 8, 15, 29, 57, 113 };
-
 	private static PaginationProvider<Employee> employees;
 
 	private static Control control;
@@ -106,7 +106,7 @@ public class EmployeePaginationTest
 	 * @throws JsonProcessingException
 	 */
 	@Test
-	public void paginationTestFull() throws JsonProcessingException
+	public void paginationTest008A() throws JsonProcessingException
 	{
 		control = new Control(PAGES_SIZES, 8, PAGE_001, PaginatedTableDecorator.MAX_PAGING_COMPONENTS);
 		employees = EmployeePaginationTest.createDataProvider(NUMBER_521);
@@ -137,33 +137,9 @@ public class EmployeePaginationTest
 	 * @throws JsonProcessingException
 	 */
 	@Test
-	public void paginationTestLarge() throws JsonProcessingException
+	public void paginationTest008B() throws JsonProcessingException
 	{
-		control = new Control(PAGES_SIZES, 113, PAGE_001, PaginatedTableDecorator.MAX_PAGING_COMPONENTS);
-		employees = EmployeePaginationTest.createDataProvider(NUMBER_521);
-		provider = new DataProvider<>(employees.getAll());
-		paginator = Paginator.<Employee> toBuilder() //
-				.control(control) //
-				.provider(provider) //
-				.build() //
-				.init();
-
-		Page page = paginator.paginate(PAGE_001);
-		assertEquals(5 + 2, page.getComponents().size());
-		assertEquals(5, page.getNumberOfPages());
-
-		String json = mapper.writeValueAsString(page);
-		LOGGER.info("Page {}: {}", PAGE_001, json);
-	}
-
-
-	/**
-	 * @throws JsonProcessingException
-	 */
-	@Test
-	public void paginationTestSingle() throws JsonProcessingException
-	{
-		control = new Control(PAGES_SIZES, 8, PAGE_001, PaginatedTableDecorator.MAX_PAGING_COMPONENTS);
+		control = new Control(Arrays.asList(PAGES_SIZES), 8, PAGE_001, PaginatedTableDecorator.MAX_PAGING_COMPONENTS);
 		employees = EmployeePaginationTest.createDataProvider(NUMBER_001);
 		provider = new DataProvider<>(employees.getAll());
 		paginator = Paginator.<Employee> toBuilder() //
@@ -185,9 +161,9 @@ public class EmployeePaginationTest
 	 * @throws JsonProcessingException
 	 */
 	@Test
-	public void paginationTestMiddle() throws JsonProcessingException
+	public void paginationTest008C() throws JsonProcessingException
 	{
-		control = new Control(PAGES_SIZES, 8, 1, PaginatedTableDecorator.MAX_PAGING_COMPONENTS);
+		control = new Control(Arrays.asList(PAGES_SIZES), 8, PAGE_001, PaginatedTableDecorator.MAX_PAGING_COMPONENTS);
 		employees = EmployeePaginationTest.createDataProvider(NUMBER_073);
 		provider = new DataProvider<>(employees.getAll());
 		paginator = Paginator.<Employee> toBuilder() //
@@ -202,6 +178,30 @@ public class EmployeePaginationTest
 
 		String json = mapper.writeValueAsString(page);
 		LOGGER.info("Page {}: {}", PAGE_008, json); 
+	}
+
+
+	/**
+	 * @throws JsonProcessingException
+	 */
+	@Test
+	public void paginationTest113A() throws JsonProcessingException
+	{
+		control = new Control(PAGES_SIZES, 113, PAGE_001, PaginatedTableDecorator.MAX_PAGING_COMPONENTS);
+		employees = EmployeePaginationTest.createDataProvider(NUMBER_521);
+		provider = new DataProvider<>(employees.getAll());
+		paginator = Paginator.<Employee> toBuilder() //
+				.control(control) //
+				.provider(provider) //
+				.build() //
+				.init();
+
+		Page page = paginator.paginate(PAGE_001);
+		assertEquals(5 + 2, page.getComponents().size());
+		assertEquals(5, page.getNumberOfPages());
+
+		String json = mapper.writeValueAsString(page);
+		LOGGER.info("Page {}: {}", PAGE_001, json);
 	}
 
 }
