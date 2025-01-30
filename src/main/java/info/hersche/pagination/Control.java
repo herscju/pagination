@@ -54,6 +54,8 @@ public class Control implements Serializable
 	private int maxComponents;
 
 	/**
+	 * Constructor
+	 * 
 	 * @param sizes
 	 * @param size
 	 * @param start
@@ -65,7 +67,7 @@ public class Control implements Serializable
 		this.size = size;
 		this.start = start;
 		this.maxComponents = maxComponents;
-		
+
 		this.init();
 	}
 
@@ -84,7 +86,7 @@ public class Control implements Serializable
 		this.size = size;
 		this.start = start;
 		this.maxComponents = maxComponents;
-		
+
 		this.init();
 	}
 
@@ -94,7 +96,9 @@ public class Control implements Serializable
 	 */
 	private void init()
 	{
-		// Add size value to sizes list
+		/**
+		 * Adds given size value to sizes list. Lists increases by 1 if the size is not all ready available.
+		 */
 		this.sizes.add(this.size);
 	}
 

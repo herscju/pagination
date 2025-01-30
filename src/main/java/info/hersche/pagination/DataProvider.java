@@ -31,6 +31,7 @@ import lombok.ToString;
 public class DataProvider<T> implements Provider<T>
 {
 	private Collection<T> collection;
+	private Long size;
 
 	/**
 	 * Constructor
@@ -40,16 +41,31 @@ public class DataProvider<T> implements Provider<T>
 	public DataProvider(Collection<T> collection)
 	{
 		this.collection = collection;
+		this.size = Integer.valueOf(this.collection.size()).longValue();
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @param collection
+	 * @param size
+	 */
+	public DataProvider(Collection<T> collection, Integer size)
+	{
+		this.collection = collection;
+		this.size = size.longValue();
+	}
 
 	/**
-	 * @return the size of data set/collection/...
+	 * Constructor
+	 * 
+	 * @param collection
+	 * @param size
 	 */
-	@Override
-	public long getSize()
+	public DataProvider(Collection<T> collection, Long size)
 	{
-		return this.collection.size();
+		this.collection = collection;
+		this.size = size;
 	}
 
 
@@ -60,6 +76,16 @@ public class DataProvider<T> implements Provider<T>
 	public List<T> getRows(long startIndex, long endIndex)
 	{
 		return this.collection.stream().skip(startIndex).limit(endIndex - startIndex).collect(Collectors.toList());
+	}
+
+
+	/**
+	 * @return the size of data set/collection/...
+	 */
+	@Override
+	public Long getSize()
+	{
+		return this.size;
 	}
 
 }

@@ -34,6 +34,6 @@ public interface Provider<T>
 	/**
 	 * @return
 	 */
-	public long getSize();
+	public Long getSize();
 
 }

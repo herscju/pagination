@@ -17,7 +17,6 @@
 package info.hersche.pagination;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -83,6 +82,12 @@ public class Page implements Serializable
 	}
 
 
+	/**
+	 * Set the list of components
+	 * 
+	 * @param components
+	 * @return
+	 */
 	public Page setComponents(List<Component> components)
 	{
 		this.components = components;
