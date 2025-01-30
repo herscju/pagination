@@ -45,7 +45,7 @@ public class Component implements Serializable
 	 */
 	@Builder.Default
 	private String label = "";
-	
+
 	/**
 	 * Value of step (forwards or backwards)
 	 */
@@ -63,6 +63,12 @@ public class Component implements Serializable
 	 */
 	@Builder.Default
 	private Boolean separator = Boolean.FALSE;
+
+	/**
+	 * CSS class name
+	 */
+	@Builder.Default
+	private String style = Paginator.Values.LINK.getStyle();
 
 	/**
 	 * Private default constructor

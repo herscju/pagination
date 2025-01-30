@@ -50,13 +50,14 @@ public class Paginator<T> implements Serializable
 	 */
 	public enum Values
 	{
-		PREVIOUS(-1, "«"), NEXT(1, "»"), SEPARATOR(0, "…");
+		PREVIOUS(-1, "«", "previous"), NEXT(1, "»", "next"), SEPARATOR(0, "…", "separator"), LINK(Integer.MAX_VALUE, "", "link");
 
 		/**
 		 * Member
 		 */
 		private int value;
 		private String label;
+		private String style;
 
 		/**
 		 * Constructor
@@ -64,10 +65,11 @@ public class Paginator<T> implements Serializable
 		 * @param value
 		 * @param label
 		 */
-		private Values(int value, String label)
+		private Values(int value, String label, String style)
 		{
 			this.value = value;
 			this.label = label;
+			this.style = style;
 		}
 
 
@@ -77,6 +79,15 @@ public class Paginator<T> implements Serializable
 		public String getLabel()
 		{
 			return this.label;
+		}
+
+
+		/**
+		 * @return the label to display
+		 */
+		public String getStyle()
+		{
+			return this.style;
 		}
 
 
@@ -176,6 +187,7 @@ public class Paginator<T> implements Serializable
 				.value(0) //
 				.selected(Boolean.valueOf((pageNumber == this.currentPage))) //
 				.separator(Boolean.FALSE) //
+				.style(Values.LINK.getStyle()) //
 				.build();
 
 		return component;
@@ -184,16 +196,16 @@ public class Paginator<T> implements Serializable
 
 	/**
 	 * @param label
-	 * @param value 
+	 * @param value
 	 * @return
 	 */
 	private Component addNavigationComponent(Values label, int value)
 	{
 		Component component = Component.toBuilder() //
 				.label(String.valueOf(label.getLabel())) //
-				.value(value)
-				.selected(Boolean.FALSE) //
+				.value(value).selected(Boolean.FALSE) //
 				.separator(Boolean.FALSE) //
+				.style(label.getStyle()) //
 				.build();
 
 		return component;
@@ -224,7 +236,7 @@ public class Paginator<T> implements Serializable
 	 */
 	private Component addSeparatorComponent()
 	{
-		return Component.toBuilder().label(Values.SEPARATOR.getLabel()).selected(Boolean.FALSE).separator(Boolean.TRUE).build();
+		return Component.toBuilder().label(Values.SEPARATOR.getLabel()).selected(Boolean.FALSE).separator(Boolean.TRUE).style(Values.SEPARATOR.getStyle()).build();
 	}
 
 
