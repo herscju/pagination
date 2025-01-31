@@ -336,7 +336,7 @@ public class Paginator<T> implements Serializable
 		}
 		else
 		{
-			components.addAll(this.addNavigationComponents(this.currentPage, this.numberOfPages));
+			components.addAll(this.addNavigationComponents(start, this.numberOfPages));
 		}
 		components.add(this.addNavigationComponent(Values.NEXT, next));
 
