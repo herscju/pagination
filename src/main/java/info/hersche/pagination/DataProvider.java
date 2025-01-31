@@ -16,6 +16,7 @@
  */
 package info.hersche.pagination;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,8 +31,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class DataProvider<T> implements Provider<T>
 {
-	private Collection<T> collection;
-	private Long size;
+	private Collection<T> collection = new ArrayList<>();
+	private Long size = Long.valueOf(this.collection.size());
 
 	/**
 	 * Constructor
@@ -40,7 +41,7 @@ public class DataProvider<T> implements Provider<T>
 	 */
 	public DataProvider(Collection<T> collection)
 	{
-		this.collection = collection;
+		this.collection = (collection != null) ? collection : this.collection;
 		this.size = Integer.valueOf(this.collection.size()).longValue();
 	}
 
