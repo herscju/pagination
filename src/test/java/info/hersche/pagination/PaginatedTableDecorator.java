@@ -37,9 +37,6 @@ import javax.swing.SwingConstants;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.TableModel;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import info.hersche.pagination.Paginator.Values;
 
 /**
@@ -52,7 +49,7 @@ public class PaginatedTableDecorator<T>
 	/**
 	 * Static member
 	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(PaginatedTableDecorator.class);
+	//private static final Logger LOGGER = LoggerFactory.getLogger(PaginatedTableDecorator.class);
 
 	/**
 	 * Defines max. components for testing and demonstration purposes
@@ -92,7 +89,7 @@ public class PaginatedTableDecorator<T>
 	private int currentPage = 1;
 
 	private JTable table;
-	private Provider<T> dataProvider;
+	private Provider<T> provider;
 	private Paginator<T> paginator;
 	private int defaultSize;
 	private JPanel contentPanel;
@@ -111,7 +108,7 @@ public class PaginatedTableDecorator<T>
 	private PaginatedTableDecorator(JTable table, Provider<T> dataProvider, List<Integer> pageSizes, int defaultSize, int defaultComponents)
 	{
 		this.table = table;
-		this.dataProvider = dataProvider;
+		this.provider = dataProvider;
 		this.defaultSize = defaultSize;
 
 		Control control = new Control(pageSizes, this.defaultSize, 1, MAX_PAGING_COMPONENTS);
@@ -119,7 +116,8 @@ public class PaginatedTableDecorator<T>
 		Paginator<T> paginator = Paginator.<T> toBuilder() //
 				.provider(dataProvider) //
 				.control(control) //
-				.build();
+				.build() //
+				.init();
 
 		this.paginator = paginator;
 	}
@@ -128,7 +126,7 @@ public class PaginatedTableDecorator<T>
 	private PaginatedTableDecorator(JTable table, Provider<T> dataProvider, Paginator<T> paginator)
 	{
 		this.table = table;
-		this.dataProvider = dataProvider;
+		this.provider = dataProvider;
 		this.paginator = paginator;
 
 		this.defaultSize = paginator.getControl().getSize();
@@ -203,8 +201,6 @@ public class PaginatedTableDecorator<T>
 		this.pageLinkPanel = new JPanel(new GridLayout(1, MAX_PAGING_COMPONENTS, 3, 3));
 		paginationPanel.add(this.pageLinkPanel);
 
-		LOGGER.info("{}", this.paginator);
-
 		if (this.paginator != null)
 		{
 			Page page = this.paginator.paginate(this.currentPage);
@@ -212,7 +208,7 @@ public class PaginatedTableDecorator<T>
 			Stream<Integer> stream = page.getPageSizesAsStream();
 			JComboBox<Integer> pageComboBox = new JComboBox<>(stream.toArray(Integer[]::new));
 			pageComboBox.addActionListener((ActionEvent evnt) -> {
-				// to preserve current rows position
+				// To preserve current rows position
 				this.defaultSize = (Integer) pageComboBox.getSelectedItem();
 				this.currentPage = ((page.getStartRow() - 1) / this.defaultSize) + 1;
 				this.paginate();
@@ -221,7 +217,7 @@ public class PaginatedTableDecorator<T>
 			page.setDefaultSize(this.defaultSize);
 			page.setCurrentPage(this.currentPage);
 
-			LOGGER.info("Pagination panel data: {}", page);
+			//LOGGER.info("Pagination panel data: {}", page);
 
 			pageComboBox.setSelectedItem(this.defaultSize);
 			paginationPanel.add(Box.createHorizontalStrut(15));
@@ -325,12 +321,12 @@ public class PaginatedTableDecorator<T>
 		long startIndex = (this.currentPage - 1) * this.defaultSize;
 		long endIndex = startIndex + this.defaultSize;
 
-		if (endIndex > this.dataProvider.getSize())
+		if (endIndex > this.provider.getSize())
 		{
-			endIndex = this.dataProvider.getSize();
+			endIndex = this.provider.getSize();
 		}
 
-		List<T> rows = this.dataProvider.getRows(startIndex, endIndex);
+		List<T> rows = this.provider.getRows(startIndex, endIndex);
 		this.objectTableModel.setObjectRows(rows);
 		this.objectTableModel.fireTableDataChanged();
 	}
@@ -343,7 +339,7 @@ public class PaginatedTableDecorator<T>
 	{
 		this.pageLinkPanel.removeAll();
 
-		long totalRows = this.dataProvider.getSize();
+		long totalRows = this.provider.getSize();
 		int numberOfPages = (int) Math.ceil((double) totalRows / this.defaultSize);
 		int maxComponents = this.paginator.getControl().getMaxComponents();
 		int start = 0;
@@ -359,7 +355,7 @@ public class PaginatedTableDecorator<T>
 				// Case: 1 ... n->lastPage
 				start = numberOfPages - maxComponents + 3;
 				end = numberOfPages;
-				LOGGER.trace("Case: '1 ... n->lastPage': Start -> End: {} -> {}", start, end);
+				//LOGGER.trace("Case: '1 ... n->lastPage': Start -> End: {} -> {}", start, end);
 
 				this.pageLinkPanel.add(this.createSeparatorComponent());
 				this.addNavigationComponents(this.pageLinkPanel, buttonGroup, start, end);
@@ -369,7 +365,7 @@ public class PaginatedTableDecorator<T>
 				// Case: 1->n ... lastPage
 				start = 2;
 				end = maxComponents - 2;
-				LOGGER.trace("Case: '1->n ... lastPage': Start -> End: {} -> {}", start, end);
+				//LOGGER.trace("Case: '1->n ... lastPage': Start -> End: {} -> {}", start, end);
 
 				this.addNavigationComponents(this.pageLinkPanel, buttonGroup, start, end);
 				this.pageLinkPanel.add(this.createSeparatorComponent());
@@ -379,8 +375,9 @@ public class PaginatedTableDecorator<T>
 			{
 				// Case: 1 ... x->n ... lastPage (CurrentPage is approximately mid point among total max-4 center links)
 				start = this.currentPage - (maxComponents - 4) / 2;
-				end = start + maxComponents - (maxComponents - 4);
-				LOGGER.trace("Case: '1 ... x->n ... lastPage': Start -> End: {} -> {}", start, end);
+				//end = start + maxComponents - (maxComponents - 4);
+				end = (numberOfPages - (start + 4) == 1) ? start + 2 : start + 4;
+				//LOGGER.trace("Case: '1 ... x->n ... lastPage': Start -> End: {} -> {}", start, end);
 
 				this.pageLinkPanel.add(this.createSeparatorComponent()); // first ellipses
 				this.addNavigationComponents(this.pageLinkPanel, buttonGroup, start, end);

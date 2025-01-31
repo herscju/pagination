@@ -36,9 +36,10 @@ import org.slf4j.LoggerFactory;
  * @author adm-jhersche
  *
  */
-public class EmployeePaginationJFrameDemo
+public class EmployeePaginationDemo1
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeePaginationJFrameDemo.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeePaginationDemo1.class);
+	private static final int NUMBER_025 = 25;
 	private static final int NUMBER_073 = 73;
 	private static final int NUMBER_521 = 521;
 
@@ -110,20 +111,21 @@ public class EmployeePaginationJFrameDemo
 		int startPage = 1;
 		int defaultComponents = PaginatedTableDecorator.MAX_PAGING_COMPONENTS;
 
-		PaginationProvider<Employee> employees = EmployeePaginationJFrameDemo.createDataProvider(NUMBER_521);
+		PaginationProvider<Employee> employees = EmployeePaginationDemo1.createDataProvider(NUMBER_521);
 		Provider<Employee> provider = new DataProvider<>(employees.getAll());
 		Control control = new Control(Arrays.asList(pageSizes), defaultSize, startPage, defaultComponents);
 		Paginator<Employee> paginator = Paginator.<Employee> toBuilder() //
 				.provider(provider) //
 				.control(control) //
-				.build();
+				.build() //
+				.init();
 
 		// Create table(s)
-		JTable table_A = new JTable(EmployeePaginationJFrameDemo.createObjectTableModel());
+		JTable table_A = new JTable(EmployeePaginationDemo1.createObjectTableModel());
 		table_A.setAutoCreateRowSorter(true);
 		PaginatedTableDecorator<Employee> component_A = PaginatedTableDecorator.decorate(table_A, provider, pageSizes, defaultSize, defaultComponents);
 
-		JTable table_B = new JTable(EmployeePaginationJFrameDemo.createObjectTableModel());
+		JTable table_B = new JTable(EmployeePaginationDemo1.createObjectTableModel());
 		table_B.setAutoCreateRowSorter(true);
 		PaginatedTableDecorator<Employee> component_B = PaginatedTableDecorator.decorate(table_B, provider, paginator);
 
@@ -142,16 +144,17 @@ public class EmployeePaginationJFrameDemo
 		tabbedPane.addTab("Test A (" + employees.getTotalRowCount() +")", page_A);
 		tabbedPane.addTab("Test B (" + employees.getTotalRowCount() +")", page_B);
 
-		employees = EmployeePaginationJFrameDemo.createDataProvider(NUMBER_073);
+		employees = EmployeePaginationDemo1.createDataProvider(NUMBER_073);
 		provider = new DataProvider<>(employees.getAll());
 		control = new Control(pageSizes, defaultSize, startPage, defaultComponents);
 		paginator = Paginator.<Employee> toBuilder() //
 				.provider(provider) //
 				.control(control) //
-				.build();
+				.build() //
+				.init();
 
-		// Create table(s)
-		JTable table_C = new JTable(EmployeePaginationJFrameDemo.createObjectTableModel());
+		// Create table
+		JTable table_C = new JTable(EmployeePaginationDemo1.createObjectTableModel());
 		table_C.setAutoCreateRowSorter(true);
 		PaginatedTableDecorator<Employee> component_C = PaginatedTableDecorator.decorate(table_C, provider, paginator);
 
@@ -161,9 +164,32 @@ public class EmployeePaginationJFrameDemo
 
 		// Add the third tabs to the JTabbedPane
 		tabbedPane.addTab("Test C (" + employees.getTotalRowCount() +")", page_C);
+		
+		/**
+		 * 
+		 */
+		employees = EmployeePaginationDemo1.createDataProvider(NUMBER_025);
+		provider = new DataProvider<>(employees.getAll(), NUMBER_025);
+		control = new Control(new Integer[] { 8, 16, 30, 60, 120 }, 3, 3, 7);
+		paginator = Paginator.<Employee> toBuilder() //
+				.provider(provider) //
+				.control(control) //
+				.build() //
+				.init();
+		
+		JTable table_D = new JTable(EmployeePaginationDemo1.createObjectTableModel());
+		table_D.setAutoCreateRowSorter(true);
+		PaginatedTableDecorator<Employee> component_D = PaginatedTableDecorator.decorate(table_D, provider, paginator);
+		
+		// Create the forth tab (page4) and add a JLabel to it
+		JPanel page_D = new JPanel();
+		page_D.add(component_D.getContentPanel());
+
+		// Add the third tabs to the JTabbedPane
+		tabbedPane.addTab("Test D (" + employees.getTotalRowCount() +")", page_D);
 
 		// Create window / frame
-		EmployeePaginationJFrameDemo.createFrame().add(tabbedPane);
+		EmployeePaginationDemo1.createFrame().add(tabbedPane);
 	}
 
 }

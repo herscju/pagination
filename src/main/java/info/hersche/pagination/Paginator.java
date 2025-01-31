@@ -143,6 +143,12 @@ public class Paginator<T> implements Serializable
 	}
 
 	/**
+	 * Is TRUE in case if init() method has been used after building the instance
+	 */
+	@Builder.Default
+	private boolean initialized = false;
+
+	/**
 	 * 
 	 */
 	private Provider<T> provider;
@@ -261,6 +267,7 @@ public class Paginator<T> implements Serializable
 	public Paginator<T> init()
 	{
 		this.numberOfPages = this.calculateNumberOfPages();
+		this.initialized = true;
 
 		return this;
 	}
@@ -272,15 +279,21 @@ public class Paginator<T> implements Serializable
 	 */
 	public Page paginate(int currentPage)
 	{
+		if (!this.initialized)
+		{
+			throw new IllegalStateException("Class is not initialised correctly. Run 'init' method after build.");
+		}
+
 		this.currentPage = currentPage;
 
 		int maxComponents = this.control.getMaxComponents();
 		int start = 0;
 		int end = 0;
 
-		List<Component> components = new LinkedList<>();
-
 		int previous = Paginator.getNextOrPreviousPage(this.currentPage, Values.PREVIOUS, this.numberOfPages);
+		int next = Paginator.getNextOrPreviousPage(this.currentPage, Values.NEXT, this.numberOfPages);
+
+		List<Component> components = new LinkedList<>();
 		components.add(this.addNavigationComponent(Values.PREVIOUS, previous));
 		if (this.numberOfPages > maxComponents)
 		{
@@ -310,8 +323,8 @@ public class Paginator<T> implements Serializable
 			else
 			{
 				// Case: 1 ... x->n ... lastPage (CurrentPage is approximately mid point among total max-4 center links)
-				start = this.currentPage - (maxComponents - 4) / 2;
-				end = start + maxComponents - (maxComponents - 4);
+				start = this.currentPage - ((maxComponents - 4) / 2);
+				end = (this.numberOfPages - (start + 4) == 1) ? start + 2 : start + 4;
 				LOGGER.trace("Case: '1 ... x->n ... lastPage': Start -> End: {} -> {}", start, end);
 
 				components.add(this.addSeparatorComponent()); // Add separator
@@ -324,7 +337,6 @@ public class Paginator<T> implements Serializable
 		{
 			components.addAll(this.addNavigationComponents(1, this.numberOfPages));
 		}
-		int next = Paginator.getNextOrPreviousPage(this.currentPage, Values.NEXT, this.numberOfPages);
 		components.add(this.addNavigationComponent(Values.NEXT, next));
 
 		// Create page object
