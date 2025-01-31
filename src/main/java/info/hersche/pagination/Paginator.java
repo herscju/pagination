@@ -209,7 +209,8 @@ public class Paginator<T> implements Serializable
 	{
 		Component component = Component.toBuilder() //
 				.label(String.valueOf(label.getLabel())) //
-				.value(value).selected(Boolean.FALSE) //
+				.value(value) //
+				.selected(Boolean.FALSE) //
 				.separator(Boolean.FALSE) //
 				.style(label.getStyle()) //
 				.build();
@@ -281,14 +282,14 @@ public class Paginator<T> implements Serializable
 	{
 		if (!this.initialized)
 		{
-			throw new IllegalStateException("Class is not initialised correctly. Run 'init' method after build.");
+			throw new IllegalStateException("Instance of class is not initialised correctly. Run 'init' method.");
 		}
 
 		this.currentPage = currentPage;
 
 		int maxComponents = this.control.getMaxComponents();
-		int start = 0;
-		int end = 0;
+		int start = 1;
+		int end = 1;
 
 		int previous = Paginator.getNextOrPreviousPage(this.currentPage, Values.PREVIOUS, this.numberOfPages);
 		int next = Paginator.getNextOrPreviousPage(this.currentPage, Values.NEXT, this.numberOfPages);
@@ -297,7 +298,7 @@ public class Paginator<T> implements Serializable
 		components.add(this.addNavigationComponent(Values.PREVIOUS, previous));
 		if (this.numberOfPages > maxComponents)
 		{
-			components.add(this.addNavigationComponent(1));
+			components.add(this.addNavigationComponent(start));
 
 			if (this.currentPage > (this.numberOfPages - ((maxComponents + 1) / 2)))
 			{
@@ -335,7 +336,7 @@ public class Paginator<T> implements Serializable
 		}
 		else
 		{
-			components.addAll(this.addNavigationComponents(1, this.numberOfPages));
+			components.addAll(this.addNavigationComponents(this.currentPage, this.numberOfPages));
 		}
 		components.add(this.addNavigationComponent(Values.NEXT, next));
 
