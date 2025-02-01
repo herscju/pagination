@@ -24,9 +24,11 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
+ * Helps to build the page instance.
+ * 
  * @author herscju
+ * @since 0.0.1
  *
- *         Helps to build the page instance.
  */
 @Getter
 @ToString

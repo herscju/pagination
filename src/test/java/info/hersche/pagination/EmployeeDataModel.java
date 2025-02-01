@@ -18,6 +18,7 @@ package info.hersche.pagination;
 
 /**
  * @author adm-jhersche
+ * @since 0.0.1
  *
  */
 public class EmployeeDataModel<T> extends ObjectTableModel<Employee>

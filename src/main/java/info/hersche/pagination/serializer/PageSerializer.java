@@ -25,7 +25,10 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import info.hersche.pagination.Page;
 
 /**
+ * Supports the serialization of the page class instance in case of using JSON objects as response.
+ * 
  * @author herscju
+ * @since 0.0.1
  * 
  */
 public class PageSerializer extends StdSerializer<Page>

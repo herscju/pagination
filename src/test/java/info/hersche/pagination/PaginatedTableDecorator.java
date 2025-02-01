@@ -41,6 +41,7 @@ import info.hersche.pagination.Paginator.Values;
 
 /**
  * @author adm-jhersche
+ * @since 0.0.1
  *
  */
 public class PaginatedTableDecorator<T>

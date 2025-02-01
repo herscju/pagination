@@ -20,7 +20,8 @@ import java.util.List;
 
 /**
  * @author adm-jhersche
- *
+ * @since 0.0.1
+ * 
  */
 public interface PaginationProvider<T>
 {

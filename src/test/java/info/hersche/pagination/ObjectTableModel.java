@@ -23,6 +23,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * @author adm-jhersche
+ * @since 0.0.1
  *
  */
 public abstract class ObjectTableModel<T> extends AbstractTableModel

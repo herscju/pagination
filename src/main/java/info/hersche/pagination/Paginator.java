@@ -33,9 +33,11 @@ import lombok.Value;
 import lombok.experimental.FieldDefaults;
 
 /**
+ * Contains all the required data to build the navigation and to use it.
+ * 
  * @author adm-jhersche
+ * @since 0.0.1
  *
- *         Contains all the required data to build the navigation and to use it.
  */
 @Value
 @Getter

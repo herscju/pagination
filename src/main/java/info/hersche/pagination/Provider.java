@@ -19,9 +19,11 @@ package info.hersche.pagination;
 import java.util.List;
 
 /**
- * @author herscju
+ * Interface to data provider.
  * 
- *         Interface to data provider.
+ * @author herscju
+ * @since 0.0.1
+ * 
  */
 public interface Provider<T>
 {

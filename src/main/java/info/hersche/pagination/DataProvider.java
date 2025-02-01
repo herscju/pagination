@@ -25,9 +25,11 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * @author herscju
+ * Holds the data which should be listed on the web page for example.
  * 
- *         Holds the data which should be listed on the web page for example.
+ * @author herscju
+ * @since 0.0.1
+ * 
  */
 @ToString
 @EqualsAndHashCode
@@ -50,6 +52,7 @@ public class DataProvider<T> implements Provider<T>
 		this.size = Integer.valueOf(this.collection.size()).longValue();
 	}
 
+
 	/**
 	 * Constructor
 	 * 
@@ -61,6 +64,7 @@ public class DataProvider<T> implements Provider<T>
 		this.collection = (collection != null) ? collection : this.collection;
 		this.size = size.longValue();
 	}
+
 
 	/**
 	 * Constructor

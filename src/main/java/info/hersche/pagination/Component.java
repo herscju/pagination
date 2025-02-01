@@ -26,9 +26,11 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * @author herscju
+ * Individual components containing the information to build links on web pages, etc.
  * 
- *         Individual components containing the information to build links on web pages, etc.
+ * @author herscju
+ * @since 0.0.1
+ * 
  */
 @Getter
 @ToString
