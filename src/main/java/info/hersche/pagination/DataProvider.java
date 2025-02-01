@@ -45,7 +45,7 @@ public class DataProvider<T> implements Provider<T>
 	/**
 	 * Constructor
 	 * 
-	 * @param collection
+	 * @param collection List of available items
 	 */
 	public DataProvider(Collection<T> collection)
 	{
@@ -57,8 +57,8 @@ public class DataProvider<T> implements Provider<T>
 	/**
 	 * Constructor
 	 * 
-	 * @param collection
-	 * @param size
+	 * @param collection List of available items. Might be just a reduced set.
+	 * @param size Number of all available items
 	 */
 	public DataProvider(Collection<T> collection, Integer size)
 	{
@@ -70,8 +70,8 @@ public class DataProvider<T> implements Provider<T>
 	/**
 	 * Constructor
 	 * 
-	 * @param collection
-	 * @param size
+	 * @param collection List of available items. Might be just a reduced set.
+	 * @param size Number of all available items
 	 */
 	public DataProvider(Collection<T> collection, Long size)
 	{

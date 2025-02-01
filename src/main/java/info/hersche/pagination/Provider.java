@@ -32,9 +32,9 @@ public interface Provider<T>
 	/**
 	 * Get the result rows between start and end index.
 	 * 
-	 * @param startIndex
-	 * @param endIndex
-	 * @return
+	 * @param startIndex Index of first row to show
+	 * @param endIndex Index of last row to show
+	 * @return List of items
 	 */
 	public List<T> getRows(long startIndex, long endIndex);
 
@@ -42,7 +42,7 @@ public interface Provider<T>
 	/**
 	 * Get the size of available data.
 	 * 
-	 * @return
+	 * @return Number of items available
 	 */
 	public Long getSize();
 

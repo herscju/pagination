@@ -41,7 +41,7 @@ public class PageSerializer extends StdSerializer<Page>
 	/**
 	 * Constructor
 	 * 
-	 * @param clazz
+	 * @param clazz Name of class to serialize
 	 */
 	public PageSerializer(Class<Page> clazz)
 	{
@@ -50,7 +50,7 @@ public class PageSerializer extends StdSerializer<Page>
 
 
 	/**
-	 *
+	 * Serialize the object
 	 */
 	@Override
 	public void serialize(Page page, JsonGenerator generator, SerializerProvider provider) throws IOException

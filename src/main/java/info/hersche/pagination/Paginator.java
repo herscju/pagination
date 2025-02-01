@@ -53,10 +53,26 @@ public class Paginator<T> implements Serializable
 	 * Definitions of navigation values.
 	 * 
 	 * @author herscju
+	 * @since 0.0.1
 	 */
 	public enum Values
 	{
-		PREVIOUS(-1, "«", "previous"), NEXT(1, "»", "next"), SEPARATOR(0, "…", "separator"), LINK(Integer.MAX_VALUE, "", "link");
+		/**
+		 * Previous page
+		 */
+		PREVIOUS(-1, "«", "previous"), //
+		/**
+		 * Next page
+		 */
+		NEXT(1, "»", "next"), //
+		/**
+		 * Separator
+		 */
+		SEPARATOR(0, "…", "separator"), //
+		/**
+		 * Default link component
+		 */
+		LINK(Integer.MAX_VALUE, "", "link");
 
 		/**
 		 * Member
@@ -68,8 +84,9 @@ public class Paginator<T> implements Serializable
 		/**
 		 * Constructor
 		 * 
-		 * @param value
-		 * @param label
+		 * @param value Value of enumeration
+		 * @param label Label of enumeration
+		 * @param style Style of enumeration
 		 */
 		private Values(int value, String label, String style)
 		{
@@ -80,6 +97,8 @@ public class Paginator<T> implements Serializable
 
 
 		/**
+		 * Label of enumeration
+		 * 
 		 * @return the label to display
 		 */
 		public String getLabel()
@@ -89,7 +108,9 @@ public class Paginator<T> implements Serializable
 
 
 		/**
-		 * @return the label to display
+		 * Style name of enumeration
+		 * 
+		 * @return the style name to use in CSS
 		 */
 		public String getStyle()
 		{
@@ -98,7 +119,9 @@ public class Paginator<T> implements Serializable
 
 
 		/**
-		 * @return the next page
+		 * The value of enumeration
+		 * 
+		 * @return the value
 		 */
 		public int getValue()
 		{
@@ -138,10 +161,12 @@ public class Paginator<T> implements Serializable
 	public static final Control DEFAULT_CONTROL = new Control(PAGE_SIZES, DEFAULT_SIZE, DEFAULT_PAGE, MAX_PAGING_COMPONENTS);
 
 	/**
-	 * @param currentPage
-	 * @param value
-	 * @param pages
-	 * @return
+	 * Detects either NEXT of PREVIOUS
+	 * 
+	 * @param currentPage Number of current page
+	 * @param value Selected value
+	 * @param pages Total number of pages available
+	 * @return Number of page
 	 */
 	public static int getNextOrPreviousPage(int currentPage, Values value, int pages)
 	{
@@ -167,7 +192,7 @@ public class Paginator<T> implements Serializable
 	private boolean initialized = false;
 
 	/**
-	 * 
+	 * Data provider 
 	 */
 	private Provider<T> provider;
 
@@ -202,7 +227,9 @@ public class Paginator<T> implements Serializable
 
 
 	/**
-	 * @param pageNumber
+	 * Adds a navigation component
+	 * 
+	 * @param pageNumber Given page number
 	 */
 	private Component addNavigationComponent(int pageNumber)
 	{
@@ -219,9 +246,11 @@ public class Paginator<T> implements Serializable
 
 
 	/**
-	 * @param label
-	 * @param value
-	 * @return
+	 * Adds a navigation component
+	 * 
+	 * @param label Label of new component
+	 * @param value Value of new component
+	 * @return Instance of new component
 	 */
 	private Component addNavigationComponent(Values label, int value)
 	{
@@ -238,8 +267,10 @@ public class Paginator<T> implements Serializable
 
 
 	/**
-	 * @param start
-	 * @param end
+	 * Adds the number of new components from start to end
+	 * 
+	 * @param start Start number
+	 * @param end End number
 	 * 
 	 */
 	private List<Component> addNavigationComponents(int start, int end)
@@ -257,7 +288,9 @@ public class Paginator<T> implements Serializable
 
 
 	/**
-	 * @return
+	 * Adds a separator component
+	 * 
+	 * @return New component
 	 */
 	private Component addSeparatorComponent()
 	{
@@ -268,7 +301,7 @@ public class Paginator<T> implements Serializable
 	/**
 	 * Calculate number of pages totally
 	 * 
-	 * @return
+	 * @return Number of pages
 	 */
 	public int calculateNumberOfPages()
 	{
@@ -280,8 +313,9 @@ public class Paginator<T> implements Serializable
 
 
 	/**
-	 * @return
+	 * Initializes the class instance
 	 * 
+	 * @return Given instance
 	 */
 	public Paginator<T> init()
 	{
@@ -293,8 +327,10 @@ public class Paginator<T> implements Serializable
 
 
 	/**
-	 * @param currentPage
-	 * @return
+	 * Walks trough the navigation
+	 * 
+	 * @param currentPage Number of current page to navigate
+	 * @return New instance of page
 	 */
 	public Page paginate(int currentPage)
 	{

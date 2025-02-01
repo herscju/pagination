@@ -42,17 +42,26 @@ public class Page implements Serializable
 	private static final long serialVersionUID = 6824303794309996822L;
 
 	/**
-	 * Member
+	 * Control
 	 */
 	private Control control;
+	/**
+	 * Number of current page
+	 */
 	private int currentPage;
+	/**
+	 * Total number of pages
+	 */
 	private int numberOfPages;
+	/**
+	 * List of components
+	 */
 	private List<Component> components;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param builder
+	 * @param builder Builder instance
 	 */
 	public Page(PageBuilder builder)
 	{
@@ -88,7 +97,7 @@ public class Page implements Serializable
 	/**
 	 * Set the list of components
 	 * 
-	 * @param components
+	 * @param components Collection of components to show for pagination
 	 * @return the page object
 	 */
 	public Page setComponents(List<Component> components)

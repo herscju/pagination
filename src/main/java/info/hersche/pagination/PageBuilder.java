@@ -36,7 +36,9 @@ import lombok.ToString;
 public class PageBuilder
 {
 	/**
-	 * @return
+	 * Creates a new instance of builder
+	 * 
+	 * @return New instance of class
 	 */
 	public static PageBuilder toBuilder()
 	{
@@ -61,7 +63,9 @@ public class PageBuilder
 
 
 	/**
-	 * @return
+	 * Builds the new page instance
+	 * 
+	 * @return New instance of page
 	 */
 	public Page build()
 	{
@@ -70,7 +74,9 @@ public class PageBuilder
 
 
 	/**
-	 * @param components
+	 * Sets the components list
+	 * 
+	 * @param components List of components
 	 * @return the builder object
 	 */
 	public PageBuilder setComponents(List<Component> components)
@@ -82,7 +88,9 @@ public class PageBuilder
 
 
 	/**
-	 * @param control
+	 * Set the control
+	 * 
+	 * @param control Configured control
 	 * @return the builder object
 	 */
 	public PageBuilder setControl(Control control)
@@ -94,7 +102,9 @@ public class PageBuilder
 
 
 	/**
-	 * @param currentPage
+	 * Sets the number of the current page
+	 * 
+	 * @param currentPage Number of current page
 	 * @return the builder object
 	 */
 	public PageBuilder setCurrentPage(int currentPage)
@@ -106,7 +116,9 @@ public class PageBuilder
 
 
 	/**
-	 * @param numberOfPages
+	 * Sets the number of pages overall
+	 * 
+	 * @param numberOfPages Number of pages overall
 	 * @return the builder object
 	 */
 	public PageBuilder setNumberOfPages(int numberOfPages)

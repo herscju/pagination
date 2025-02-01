@@ -45,12 +45,17 @@ public class Control implements Serializable
 	private static final long serialVersionUID = 3213432628027693222L;
 
 	/**
-	 * Member
+	 * Number of pages to select
 	 */
 	private TreeSet<Integer> sizes;
+	/**
+	 * Number of items to display on page
+	 */
 	private int size;
+	/**
+	 * Number of start page
+	 */
 	private int start;
-
 	/**
 	 * The max. number of components to show
 	 */
@@ -59,10 +64,10 @@ public class Control implements Serializable
 	/**
 	 * Constructor
 	 * 
-	 * @param sizes
-	 * @param size
-	 * @param start
-	 * @param maxComponents
+	 * @param sizes List of possible sizes (items per page)
+	 * @param size Current size (items per page). Will be added to parameter sizes if not already part of list.
+	 * @param start Number of start page
+	 * @param maxComponents Max. number of components to show
 	 */
 	public Control(Integer[] sizes, int size, int start, int maxComponents)
 	{
@@ -78,10 +83,10 @@ public class Control implements Serializable
 	/**
 	 * Constructor
 	 * 
-	 * @param sizes
-	 * @param size
-	 * @param start
-	 * @param maxComponents
+	 * @param sizes List of possible sizes (items per page)
+	 * @param size Current size (items per page). Will be added to parameter sizes if not already part of list.
+	 * @param start Number of start page
+	 * @param maxComponents Max. number of components to show
 	 */
 	public Control(List<Integer> sizes, int size, int start, int maxComponents)
 	{
