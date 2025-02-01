@@ -23,6 +23,7 @@ import java.util.List;
  * 
  * @author herscju
  * @since 0.0.1
+ * @param <T> Generic, typically 'Page'
  * 
  */
 public interface Provider<T>

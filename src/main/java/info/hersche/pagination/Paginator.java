@@ -37,6 +37,7 @@ import lombok.experimental.FieldDefaults;
  * 
  * @author adm-jhersche
  * @since 0.0.1
+ * @param <T> Generic, typically 'Page'
  *
  */
 @Value
@@ -49,6 +50,8 @@ import lombok.experimental.FieldDefaults;
 public class Paginator<T> implements Serializable
 {
 	/**
+	 * Definitions of navigation values.
+	 * 
 	 * @author herscju
 	 */
 	public enum Values

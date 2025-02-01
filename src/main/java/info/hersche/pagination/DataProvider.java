@@ -29,6 +29,7 @@ import lombok.ToString;
  * 
  * @author herscju
  * @since 0.0.1
+ * @param <T> Generic, typically 'Page'
  * 
  */
 @ToString
