@@ -26,9 +26,11 @@
 
 	<build>
 		<pluginManagement>
+			<!--  -->
 		</pluginManagement>
 
 		<plugins>
+			<!-- Compiler -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -39,6 +41,7 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
+			<!-- Testing -->
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -58,6 +61,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Documentation -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
