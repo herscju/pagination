@@ -20,18 +20,24 @@ import java.util.List;
 
 /**
  * @author herscju
+ * 
  */
 public interface Provider<T>
 {
 
 	/**
+	 * Get the result rows between start and end index.
+	 * 
 	 * @param startIndex
 	 * @param endIndex
 	 * @return
 	 */
 	public List<T> getRows(long startIndex, long endIndex);
 
+
 	/**
+	 * Get the size of available data.
+	 * 
 	 * @return
 	 */
 	public Long getSize();

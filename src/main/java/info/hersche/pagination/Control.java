@@ -92,7 +92,7 @@ public class Control implements Serializable
 
 
 	/**
-	 * 
+	 * Initializes the control.
 	 */
 	private void init()
 	{

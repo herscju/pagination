@@ -342,8 +342,8 @@ public class PaginatedTableDecorator<T>
 		long totalRows = this.provider.getSize();
 		int numberOfPages = (int) Math.ceil((double) totalRows / this.defaultSize);
 		int maxComponents = this.paginator.getControl().getMaxComponents();
-		int start = 0;
-		int end = 0;
+		int start = 1;
+		int end = numberOfPages;
 		ButtonGroup buttonGroup = new ButtonGroup();
 
 		this.addSingleStepButton(this.pageLinkPanel, buttonGroup, Values.PREVIOUS, numberOfPages);
@@ -375,7 +375,6 @@ public class PaginatedTableDecorator<T>
 			{
 				// Case: 1 ... x->n ... lastPage (CurrentPage is approximately mid point among total max-4 center links)
 				start = this.currentPage - (maxComponents - 4) / 2;
-				//end = start + maxComponents - (maxComponents - 4);
 				end = (numberOfPages - (start + 4) == 1) ? start + 2 : start + 4;
 				//LOGGER.trace("Case: '1 ... x->n ... lastPage': Start -> End: {} -> {}", start, end);
 
@@ -387,7 +386,7 @@ public class PaginatedTableDecorator<T>
 		}
 		else
 		{
-			this.addNavigationComponents(this.pageLinkPanel, buttonGroup, 1, numberOfPages);
+			this.addNavigationComponents(this.pageLinkPanel, buttonGroup, start, end);
 		}
 		this.addSingleStepButton(this.pageLinkPanel, buttonGroup, Values.NEXT, numberOfPages);
 

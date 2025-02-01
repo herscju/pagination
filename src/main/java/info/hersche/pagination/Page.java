@@ -86,7 +86,7 @@ public class Page implements Serializable
 	 * Set the list of components
 	 * 
 	 * @param components
-	 * @return
+	 * @return the page object
 	 */
 	public Page setComponents(List<Component> components)
 	{

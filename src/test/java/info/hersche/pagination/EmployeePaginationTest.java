@@ -36,6 +36,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import info.hersche.pagination.serializer.PageSerializer;
 
 /**
+ * @author herscju
  * 
  */
 public class EmployeePaginationTest
@@ -177,7 +178,7 @@ public class EmployeePaginationTest
 		assertEquals(10, page.getNumberOfPages());
 
 		String json = mapper.writeValueAsString(page);
-		LOGGER.info("Page {}: {}", PAGE_008, json); 
+		LOGGER.info("Page {}: {}", PAGE_008, json);
 	}
 
 

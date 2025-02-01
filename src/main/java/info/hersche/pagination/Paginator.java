@@ -104,18 +104,30 @@ public class Paginator<T> implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = -8693097673863502204L;
-	private static final Logger LOGGER = LoggerFactory.getLogger(Paginator.class);
-	private static final int DEFAULT_PAGE = 1;
-	private static final int DEFAULT_SIZE = 9;
-	private static final Integer[] PAGE_SIZES = new Integer[] { 5, 10, 20, 50, 75, 100 };
 
 	/**
 	 * 
 	 */
-	public static final int MAX_PAGING_COMPONENTS = 9;
+	private static final Logger LOGGER = LoggerFactory.getLogger(Paginator.class);
 
 	/**
-	 * 
+	 * Start page
+	 */
+	private static final int DEFAULT_PAGE = 1;
+	/**
+	 * Default list of number of elements or items to display on page
+	 */
+	private static final Integer[] PAGE_SIZES = new Integer[] { 5, 10, 20, 50, 75, 100 };
+	/**
+	 * Default number of control components
+	 */
+	private static final int DEFAULT_SIZE = 9;
+	/**
+	 * Max. number of control components
+	 */
+	public static final int MAX_PAGING_COMPONENTS = 9;
+	/**
+	 * Default control
 	 */
 	public static final Control DEFAULT_CONTROL = new Control(PAGE_SIZES, DEFAULT_SIZE, DEFAULT_PAGE, MAX_PAGING_COMPONENTS);
 
@@ -175,7 +187,7 @@ public class Paginator<T> implements Serializable
 	private long number;
 
 	/**
-	 * Constructor
+	 * Default constructor
 	 */
 	public Paginator()
 	{
@@ -289,7 +301,7 @@ public class Paginator<T> implements Serializable
 
 		int maxComponents = this.control.getMaxComponents();
 		int start = 1;
-		int end = 1;
+		int end = this.numberOfPages;
 
 		int previous = Paginator.getNextOrPreviousPage(this.currentPage, Values.PREVIOUS, this.numberOfPages);
 		int next = Paginator.getNextOrPreviousPage(this.currentPage, Values.NEXT, this.numberOfPages);
@@ -336,19 +348,17 @@ public class Paginator<T> implements Serializable
 		}
 		else
 		{
-			components.addAll(this.addNavigationComponents(start, this.numberOfPages));
+			components.addAll(this.addNavigationComponents(start, end));
 		}
 		components.add(this.addNavigationComponent(Values.NEXT, next));
 
-		// Create page object
-		Page page = PageBuilder.toBuilder()//
+		// Create page object and return
+		return PageBuilder.toBuilder()//
 				.setControl(this.control) //
 				.setCurrentPage(this.currentPage) //
 				.setNumberOfPages(this.numberOfPages) //
 				.setComponents(components) //
 				.build();
-
-		return page;
 	}
 
 }

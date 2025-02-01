@@ -1,4 +1,17 @@
 /**
+ * Copyright (c) 2025 Jürg Hersche (Green@rt)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * 
  */
 package info.hersche.pagination;
@@ -11,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * @author herscju
  * 
  */
 public class EmployeePaginationDemo2
@@ -50,11 +64,18 @@ public class EmployeePaginationDemo2
 
 		LOGGER.info("=== Main =====================================================================");
 
-		int size = 3;
+		//  Number of items to display on page
+		int dataRows = 3;
+		// Number of items available totally
+		int dataSize = 25;
+		PaginationProvider<Employee> employees = EmployeePaginationDemo2.createDataProvider(dataRows);
+		Provider<Employee> provider = new DataProvider<>(employees.getAll(), dataSize);
+		
+		
+		int controlSize = 3;
 		int startPage = 1;
-		PaginationProvider<Employee> employees = EmployeePaginationDemo2.createDataProvider(3);
-		Provider<Employee> provider = new DataProvider<>(employees.getAll(), 25);
-		Control control = new Control(new Integer[] { 8, 16, 30, 60, 120 }, size, startPage, 7);
+		int maxComponents = 7;
+		Control control = new Control(new Integer[] { 8, 16, 30, 60, 120 }, controlSize, startPage, maxComponents);
 		Paginator<Employee> paginator = Paginator.<Employee> toBuilder() //
 				.provider(provider) //
 				.control(control) //
@@ -75,11 +96,11 @@ public class EmployeePaginationDemo2
 			{
 				if (component.getSelected())
 				{
-					output.append("[").append(component.getLabel()).append("] ");
+					output.append("<").append(component.getLabel()).append("> ");
 				}
 				else
 				{
-					output.append("<").append(component.getLabel()).append("> ");
+					output.append(" ").append(component.getLabel()).append("  ");
 				}
 			}
 

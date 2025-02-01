@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import info.hersche.pagination.Page;
 
 /**
+ * @author herscju
  * 
  */
 public class PageSerializer extends StdSerializer<Page>
@@ -35,11 +36,13 @@ public class PageSerializer extends StdSerializer<Page>
 	private static final long serialVersionUID = -7991444522513768549L;
 
 	/**
-	 * @param src
+	 * Constructor
+	 * 
+	 * @param clazz
 	 */
-	public PageSerializer(Class<Page> t)
+	public PageSerializer(Class<Page> clazz)
 	{
-		super(t);
+		super(clazz);
 	}
 
 

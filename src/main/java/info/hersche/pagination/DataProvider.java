@@ -26,11 +26,15 @@ import lombok.ToString;
 
 /**
  * @author herscju
+ * 
  */
 @ToString
 @EqualsAndHashCode
 public class DataProvider<T> implements Provider<T>
 {
+	/**
+	 * Members
+	 */
 	private Collection<T> collection = new ArrayList<>();
 	private Long size = Long.valueOf(this.collection.size());
 
@@ -53,7 +57,7 @@ public class DataProvider<T> implements Provider<T>
 	 */
 	public DataProvider(Collection<T> collection, Integer size)
 	{
-		this.collection = collection;
+		this.collection = (collection != null) ? collection : this.collection;
 		this.size = size.longValue();
 	}
 
@@ -65,13 +69,13 @@ public class DataProvider<T> implements Provider<T>
 	 */
 	public DataProvider(Collection<T> collection, Long size)
 	{
-		this.collection = collection;
+		this.collection = (collection != null) ? collection : this.collection;
 		this.size = size;
 	}
 
 
 	/**
-	 *
+	 * @return the result rows between start and end index.
 	 */
 	@Override
 	public List<T> getRows(long startIndex, long endIndex)

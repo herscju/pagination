@@ -68,7 +68,7 @@ public class PageBuilder
 
 	/**
 	 * @param components
-	 * @return
+	 * @return the builder object
 	 */
 	public PageBuilder setComponents(List<Component> components)
 	{
@@ -80,7 +80,7 @@ public class PageBuilder
 
 	/**
 	 * @param control
-	 * @return
+	 * @return the builder object
 	 */
 	public PageBuilder setControl(Control control)
 	{
@@ -92,7 +92,7 @@ public class PageBuilder
 
 	/**
 	 * @param currentPage
-	 * @return
+	 * @return the builder object
 	 */
 	public PageBuilder setCurrentPage(int currentPage)
 	{
@@ -102,6 +102,10 @@ public class PageBuilder
 	}
 
 
+	/**
+	 * @param numberOfPages
+	 * @return the builder object
+	 */
 	public PageBuilder setNumberOfPages(int numberOfPages)
 	{
 		this.numberOfPages = numberOfPages;
