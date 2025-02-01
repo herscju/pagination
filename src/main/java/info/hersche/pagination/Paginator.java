@@ -35,6 +35,7 @@ import lombok.experimental.FieldDefaults;
 /**
  * @author adm-jhersche
  *
+ *         Contains all the required data to build the navigation and to use it.
  */
 @Value
 @Getter

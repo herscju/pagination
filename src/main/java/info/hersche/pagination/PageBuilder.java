@@ -26,6 +26,7 @@ import lombok.ToString;
 /**
  * @author herscju
  *
+ *         Helps to build the page instance.
  */
 @Getter
 @ToString

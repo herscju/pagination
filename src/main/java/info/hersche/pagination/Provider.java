@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * @author herscju
  * 
+ *         Interface to data provider.
  */
 public interface Provider<T>
 {

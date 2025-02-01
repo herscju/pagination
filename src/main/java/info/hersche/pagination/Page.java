@@ -27,6 +27,7 @@ import lombok.ToString;
 /**
  * @author herscju
  *
+ *         Represents the current page (e.g. web page).
  */
 @Getter
 @ToString

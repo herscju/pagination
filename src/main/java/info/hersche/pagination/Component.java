@@ -28,6 +28,7 @@ import lombok.ToString;
 /**
  * @author herscju
  * 
+ *         Individual components containing the information to build links on web pages, etc.
  */
 @Getter
 @ToString

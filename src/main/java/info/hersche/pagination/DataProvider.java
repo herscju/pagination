@@ -27,6 +27,7 @@ import lombok.ToString;
 /**
  * @author herscju
  * 
+ *         Holds the data which should be listed on the web page for example.
  */
 @ToString
 @EqualsAndHashCode

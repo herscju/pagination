@@ -28,7 +28,8 @@ import lombok.ToString;
 
 /**
  * @author adm-jhersche
- *
+ * 
+ *         Controls the behavior of the link components.
  */
 @Setter
 @Getter
