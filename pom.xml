@@ -10,6 +10,18 @@
 
 	<name>pagination</name>
 	<url>http://maven.apache.org</url>
+	
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/herscju/pagination</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,6 +34,7 @@
 	</properties>
 
 	<pluginRepositories>
+		<!--  -->
 	</pluginRepositories>
 
 	<build>
